@@ -17,23 +17,6 @@ This analysis answers the following questions:
 * Do revenue drops align with changes in customer count?
 * Which customer segments contribute the most to total revenue?
 
-## Tools Used
-
-* SQL
-* Databricks Notebook
-* Data visualization in Databricks
-
-## Dataset
-
-The analysis uses two retail tables:
-
-* `retail_customers`: customer demographic information, including age, gender, income level, and customer segment
-* `retail_transactions`: transaction-level data, including revenue, product brand, ratings, transaction date, and customer ID
-
-The two tables are joined using `CUSTOMER_ID`.
-
-Source: [Retail Analysis on Large Dataset](https://www.kaggle.com/datasets/sahilprajapati143/retail-analysis-large-dataset/data)
-
 ## Key Analysis Performed
 
 * Summary statistics for total customers, total revenue, average transaction amount, and transaction range
@@ -61,6 +44,23 @@ Source: [Retail Analysis on Large Dataset](https://www.kaggle.com/datasets/sahil
 * Investigate why highly rated brands are generating lower revenue, as this may indicate issues with brand visibility, pricing, promotion, or inventory availability.
 * Run targeted promotions or customer acquisition campaigns during months with revenue and customer count declines.
 * Focus on retaining regular customers while encouraging more customers to move into the higher-level segment.
+
+## Tools Used
+
+* SQL
+* Databricks Notebook
+* Data visualization in Databricks
+
+## Dataset
+
+The analysis uses two retail tables:
+
+* `retail_customers`: customer demographic information, including age, gender, income level, and customer segment
+* `retail_transactions`: transaction-level data, including revenue, product brand, ratings, transaction date, and customer ID
+
+The two tables are joined using `CUSTOMER_ID`.
+
+Source: [Retail Analysis on Large Dataset](https://www.kaggle.com/datasets/sahilprajapati143/retail-analysis-large-dataset/data)
 
 ## Skills Demonstrated
 
