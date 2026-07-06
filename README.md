@@ -1,4 +1,4 @@
-# Retail Customer and Revenue Analysis (SQL)
+# Retail Customer and Revenue Analysis
 
 ## Overview
 
