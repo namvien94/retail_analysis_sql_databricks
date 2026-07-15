@@ -1,87 +1,73 @@
 # Retail Customer and Revenue Analysis
 
-## Overview
+## The Decision
 
-This project uses SQL to analyze retail customer and transaction data. The goal is to understand customer demographics, revenue performance, brand-level sales, monthly trends, and customer segment behavior.
+Should the business prioritize acquiring new customers, mainly ages 18-34, or invest in growing revenue per existing customer through retention and cross-sell, given that revenue per customer is flat across all segments?
 
-The analysis focuses on turning raw retail data into business insights that can support customer targeting, brand strategy, and sales planning.
+This project uses SQL and Tableau to answer that question, using retail transaction and customer data to identify where growth is really coming from, and where the business is exposed to risk if that growth slows down.
 
-## Business Questions
+`[Sales by Customer Segments donut chart](https://drive.google.com/file/d/1hlCruQw9IIWkXr-H7qeRPOHbr3WgDVK1/view?usp=sharing)`
 
-This analysis answers the following questions:
+## North Star Metrics
 
-* Who are the main customers by age group, gender, and income level?
-* Which brands generate the most revenue?
-* Do higher-revenue brands also have higher customer ratings?
-* How does revenue change from month to month?
-* Do revenue drops align with changes in customer count?
-* Which customer segments contribute the most to total revenue?
+These are the three metrics that matter most for answering the decision above, not every metric in the dashboard.
 
-## Key Analysis Performed
+1. **Revenue by Customer Segment**: New customers generate $12M (40%), Regular $10M (33%), Premium $7M (23%) of total $30M revenue.
+2. **Average Sales Per Customer (ASPC)**: $1,370, essentially flat across all three segments.
+3. **Revenue Concentration by Age Group**: Customers aged 18-34 account for the large majority of total revenue. Revenue drops sharply after age 34 and is close to zero for 55+.
 
-* Summary statistics for total customers, total revenue, average transaction amount, and transaction range
-* Customer demographic analysis by age group, gender, and income level
-* Brand revenue ranking using aggregation and window functions
-* Average product rating comparison by brand
-* Monthly revenue trend analysis
-* Customer segment revenue share and revenue per customer
-
-## Key Insights
-
-* The customer base is concentrated in younger age groups, especially customers between 18 and 34.
-* Male customers represent a larger share of customers across age groups.
-* Pepsi, Zara, and Nike are among the top revenue-generating brands.
-* Some lower-revenue brands have higher average ratings than the highest-revenue brands.
-* Revenue fluctuates across months, with noticeable dips in May, August, September, November, and December.
-* Revenue declines align with decreases in customer count, suggesting that lower customer traffic may be a major driver of weaker sales performance in those months.
-* New customers contribute the largest share of total revenue at about $12M, or 40% of all sales.
-* Revenue per customer remains consistent across all segments, so differences in total revenue are mainly driven by customer count rather than higher spending per person.
+`[INSERT SCREENSHOT: Sales Dashboard, "Average Order Value" KPI card]`
+`[INSERT SCREENSHOT: Customer Dashboard, "Sales by Age, Gender, and Income" bar chart]`
 
 ## Recommendations
 
-* Strengthen marketing and inventory strategies for the strongest customer groups while also creating campaigns to attract underrepresented customer segments.
-* Investigate why highly rated brands are generating lower revenue, as this may indicate issues with brand visibility, pricing, promotion, or inventory availability.
-* Run targeted promotions or customer acquisition campaigns during months with revenue and customer count declines.
-* Focus on retaining regular customers while encouraging more customers to move into the higher-level segment.
+### 1. Fix the retention math, not just the acquisition funnel
 
-## Tools Used
+New customers bring in the most total revenue, but each one spends the same average amount as a Regular or Premium customer, $1,370. A customer who has been with the business for two years is not worth more than someone who signed up last week. That means every dollar of the $12M from new customers has to be re-earned through new acquisition spend rather than building on existing relationships.
 
-* SQL
-* Databricks Notebook
-* Data visualization in Databricks
-* Tableau
+**Recommended action**: Test a loyalty or bundling offer aimed at moving New customers into Regular, and measure whether it raises their average spend above $1,370. If successful, revenue grows without a matching increase in acquisition cost.
 
-## Dataset
+`[INSERT SCREENSHOT: Customer Dashboard, "Average Sales Per Customer" KPI card]`
 
-The analysis uses two retail tables:
+### 2. Reduce dependency on the 18-34 age group
 
-* `retail_customers`: customer demographic information, including age, gender, income level, and customer segment
-* `retail_transactions`: transaction-level data, including revenue, product brand, ratings, transaction date, and customer ID
+Nearly all revenue is generated by customers aged 18-34. If buying habits shift within that group, whether from a competitor, a trend change, or economic pressure, there is no other age group large enough to absorb the loss. The business's entire revenue model currently depends on one demographic staying loyal indefinitely.
 
-The two tables are inner-joined using `CUSTOMER_ID`.
+**Recommended action**: Run a 90-day pilot campaign targeting ages 35-54 with tailored promotions or product recommendations. Set a clear target, for example lifting this group's share of total revenue from roughly 5% to 10% within two quarters.
 
-Source: [Retail Analysis on Large Dataset](https://www.kaggle.com/datasets/sahilprajapati143/retail-analysis-large-dataset/data)
+`[INSERT SCREENSHOT: Customer Dashboard, "Sales by Age, Gender, and Income" bar chart, zoomed on 35-54 rows]`
 
-## Skills Demonstrated
+### 3. Investigate and address seasonal revenue dips
 
-* SQL joins
-* Aggregation with `COUNT`, `SUM`, `AVG`, `MIN`, and `MAX`
-* Conditional logic using `CASE WHEN`
-* Grouped customer segmentation
-* Window functions including `RANK()` and `LAG()`
-* Month-over-month trend analysis
-* Business insight generation
-* Data storytelling with SQL outputs and visualizations via Tableau
+Revenue drops noticeably in May, August, September, November, and December, and these dips align with drops in customer count rather than drops in spend per customer. This points to a traffic problem, not a pricing or product problem.
 
-## Dashboard (Tableau)
-Built two linked, interactive Tableau dashboards (Sales Performance & Customer Insights) to make the SQL-driven insights explorable for non-technical stakeholders:
-- Cross-dashboard filter actions (e.g., filtering by brand updates customer demographics view)
-- Parameter-driven "Top N Brands" control
-- Calculated fields for age segmentation, dynamic KPI titles, and highest/lowest month highlighting
-- Stacked bar charts breaking down revenue by age, gender, and income; brand-level revenue and rating comparisons
+**Recommended action**: Run targeted acquisition promotions or ad spend specifically timed for these months, rather than adjusting pricing or product mix.
+
+`[INSERT SCREENSHOT: Sales Dashboard, "Total Sales" and "Sales vs. Customers" line charts]`
+
+### 4. Reduce brand concentration risk
+
+Pepsi alone generates $8.5M, roughly 28% of total revenue. The next closest brands, Sony, Zara, and Nike, each bring in only $2-3M. If anything disrupts Pepsi's performance, such as a supply issue, pricing change, or new competitor, there is no other brand positioned to absorb that loss.
+
+**Recommended action**: Evaluate whether next-tier brands have room to grow through better placement or promotion, with a goal of no single brand exceeding roughly 20% of total revenue.
+
+`[Top Brands bar chart](https://drive.google.com/file/d/1EuCosBLOJpgTrDmsl9lxI11YyLSKHNjI/view?usp=sharing)`
+
+## Evidence
+
+Two linked, interactive Tableau dashboards support the recommendations above. Filtering by brand on one dashboard updates the customer demographics view on the other, so a stakeholder can trace any recommendation back to the underlying data.
 
 🔗 [View live dashboard on Tableau Public](https://public.tableau.com/views/CustomerSalesPerformanceAnalysis/SalesDashboard?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
 
 ![(Sales Dashboard)](https://github.com/namvien94/retail_analysis_sql_databricks/blob/96a1640745a1c562aed75bcd44e843aa10afada2/Sales%20Dashboard.png)
 
 ![Customer Dashboard](https://github.com/namvien94/retail_analysis_sql_databricks/blob/96a1640745a1c562aed75bcd44e843aa10afada2/Customer%20Dashboard.png)
+
+## Technical Approach
+
+* **Data**: Two retail tables, `retail_customers` (age, gender, income, segment) and `retail_transactions` (revenue, brand, rating, date, customer ID), joined on `CUSTOMER_ID`. Source: [Retail Analysis on Large Dataset (Kaggle)](https://www.kaggle.com/datasets/sahilprajapati143/retail-analysis-large-dataset/data)
+* **Analysis**: SQL in Databricks, including aggregation (`COUNT`, `SUM`, `AVG`, `MIN`, `MAX`), `CASE WHEN` segmentation, and window functions (`RANK()`, `LAG()`) for brand ranking and month-over-month trends.
+* **Visualization**: Tableau, with cross-dashboard filter actions, a parameter-driven "Top N Brands" control, calculated fields for age segmentation, and highest/lowest month highlighting.
+* **Tools**: SQL, Databricks Notebook, Tableau
+
+Full SQL queries and notebook are available in this repository.
