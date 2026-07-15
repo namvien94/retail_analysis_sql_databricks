@@ -8,7 +8,7 @@ This project uses SQL and Tableau to answer that question, using retail transact
 
 ![Sales by Customer Segments donut chart](https://github.com/namvien94/retail_analysis_sql_databricks/blob/6d98aae106f233a0c6ce9a1d577c97fd6b89accb/Sales%20by%20Customer%20Segments.png)
 
-## North Star Metrics
+## Key Metrics
 
 These are the three metrics that matter most for answering the decision above, not every metric in the dashboard.
 
@@ -16,7 +16,6 @@ These are the three metrics that matter most for answering the decision above, n
 2. **Average Sales Per Customer (ASPC)**: $1,370, essentially flat across all three segments.
 3. **Revenue Concentration by Age Group**: Customers aged 18-34 account for the large majority of total revenue. Revenue drops sharply after age 34 and is close to zero for 55+.
 
-![Average Order Value" KPI card](https://github.com/namvien94/retail_analysis_sql_databricks/blob/6d98aae106f233a0c6ce9a1d577c97fd6b89accb/Average%20Order%20Value%20(AOV).png)
 ![Sales by Age, Gender, and Income](https://github.com/namvien94/retail_analysis_sql_databricks/blob/6d98aae106f233a0c6ce9a1d577c97fd6b89accb/Sales%20by%20Age%2C%20Gender%2C%20and%20Income.png)
 
 ## Recommendations
@@ -65,7 +64,7 @@ Two linked, interactive Tableau dashboards support the recommendations above. Fi
 
 ## Technical Approach
 
-* **Data**: Two retail tables, `retail_customers` (age, gender, income, segment) and `retail_transactions` (revenue, brand, rating, date, customer ID), joined on `CUSTOMER_ID`. Source: [Retail Analysis on Large Dataset (Kaggle)](https://www.kaggle.com/datasets/sahilprajapati143/retail-analysis-large-dataset/data){:target="_blank"}
+* **Data**: Two retail tables, `retail_customers` (age, gender, income, segment) and `retail_transactions` (revenue, brand, rating, date, customer ID), joined on `CUSTOMER_ID`. Source: [Retail Analysis on Large Dataset (Kaggle)](https://www.kaggle.com/datasets/sahilprajapati143/retail-analysis-large-dataset/data)
 * **Analysis**: SQL in Databricks, including aggregation (`COUNT`, `SUM`, `AVG`, `MIN`, `MAX`), `CASE WHEN` segmentation, and window functions (`RANK()`, `LAG()`) for brand ranking and month-over-month trends.
 * **Visualization**: Tableau, with cross-dashboard filter actions, a parameter-driven "Top N Brands" control, calculated fields for age segmentation, and highest/lowest month highlighting.
 * **Tools**: SQL, Databricks Notebook, Tableau
