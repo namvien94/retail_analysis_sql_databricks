@@ -6,7 +6,7 @@ Should the business prioritize acquiring new customers, mainly ages 18-34, or in
 
 This project uses SQL and Tableau to answer that question, using retail transaction and customer data to identify where growth is really coming from, and where the business is exposed to risk if that growth slows down.
 
-![Sales by Customer Segments donut chart]()
+![Sales by Customer Segments donut chart](https://github.com/namvien94/customer-retention-vs-acquisition/blob/28f0f7d29f39865bce5dbb9d4987d4e7dd999f3f/Sales%20by%20Customer%20Segments.png)
 
 ## Key Metrics
 
