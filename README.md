@@ -12,7 +12,7 @@ This project uses SQL and Tableau to answer that question, using retail transact
 
 These are the three metrics that matter most for answering the decision above, not every metric in the dashboard.
 
-1. **Revenue by Customer Segment**: New customers generate $12M (40%), Regular $10M (33%), Premium $7M (23%) of total $30M revenue.
+1. **Revenue by Customer Segment**: New customers generate $12M (40%), Regular $10M (33%), and Premium $7M (23%), summing to roughly $30M in total revenue.
 2. **Average Sales Per Customer (ASPC)**: $1,370, essentially flat across all three segments.
 3. **Revenue Concentration by Age Group**: Customers aged 18-34 account for the large majority of total revenue. Revenue drops sharply after age 34 and is close to zero for 55+.
 
